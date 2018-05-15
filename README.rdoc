@@ -103,7 +103,7 @@ To see your repo URL, run:
 git remote show origin
 You can change the URL with:
 
-git remote set-url origin git+ssh://git@github.com/username/reponame.git
+git remote set-url origin git+ssh://git@github.com:username/mrgi-app.git
 
 
 Phase 3.0 Making Custom Css interact with framework
@@ -231,3 +231,9 @@ Cloud9 Help
 You may be using the wrong PORT & IP for your server application.For rails, use: 'rails s -p $PORT -b $IP'
 For Sinatra, use:
 ruby app.rb -p $PORT -o $IP'.
+
+
+
+
+
+testing git push
