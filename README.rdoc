@@ -1,7 +1,155 @@
 == README
-vbkjbvjerkvbjk;ve;bverjkk
+
+current == L 68 -->
+
+Phase 1: Merge Saas Project with Rsoftware Template
+need to first create an rails app with { rails new newappname }
+
+After finished installing bring terminal inside file
+
+delete files you intend to replace (be careful replacing *gitignore and gemlock file, also tat gemfile that is replaced doesn't have outdated syntaxes)
+
+paste new files
+
+rake db:create db:migrate
+
+will possibly say issues with postgres id (from copied app) is already in use. So you need to follow the steps on link given below
+
+The link below will explain the issue with grabbing a finished project already having a pg db id (in files database.yml)
+https://stackoverflow.com/questions/19828385/pgconnectionbad-could-not-connect-to-server-connection-refused
+
+\du list users
+
+First login as postgres user:
+
+sudo su - postgres
+psql
+
+then \l shows projects with \q as exit
+
+rake db:drop db:create db:migrate
+
+
+
+CREATE DATABASE mrgi_production  WITH OWNER yourname;
+connect to the required db: psql -d databaseName
+
+\dt would return the list of all table in the database you're connected to.
+
+sudo service postgresql start
+
+gem install pg
+
+finish initial edits (versions etc) before deploy..
+
+***make sure for heroku's sake! Gemfile has ruby version written on top like this first:
+
+    //ruby -v tells you the active version
+    
+    {
+    source "https://rubygems.org"
+    ruby "2.2.4"
+    }
+
+rm postmaster.pid
+
+bundle install
+
+rake db:drop db:create db:migrate
+
+
+Phase 2: Push project
+Git Init
+    a) Set up git link to new account
+        $ git init
+        $ git status
+        $ git add -A
+        $ git commit -m "Initial Deploy"
+        
+        go to github site and manke new repo (make name same as project folder)
+        
+        follow steps under "..or push an existing repository from the command line"
+        copy and paste the two lines into command line
+        
+        $git push
+        
+        
+    b) Set up with heroku
+        $ heroku create
+            input cred
+        $ heroku rename nenameofapp
+        $ git status #making sure there are no needed commits got git first
+        $ git push heroku master
+        
+    
+    Set up Sendgrid
+    Set up stp
+    
+view_devise_registrations_new.html
+
+
+Phase 3.0 Making Custom Css interact with framework
+
+
+
+				Merge a) index page (logged out)
+				    *finished
+				Merge a.2 navbar for entire application
+				    *finished
+					• Fix logic on paths if signed in or signed out
+					*current
+					
+					---
+					1. find " view_devise_registrations_new.html ", in recoveryunit.wf folder on pc
+					last fix between lines 
+					#111 - #117
+					
+					---
+					
+					
+					
+				Fix spacers between navigation, and application.html - render paths
+				Merge b) sign up page
+				Merge c) sign in page
+				Merge d) forgot password page
+				Merge d.2 resend forgot p# "/users/confirmation/new"
+					Webflow
+				Merge e) index (logged in) path
+					Webflow version
+				Merge f) (logged in) project "/tenants/1/projects/1" page
+					Uses templates of page E
+				Merge g) New Artifact page "/artifacts/new?project_id=#"
+					Uses templates of page A-D
+				Merge h) "Members/new"
+					Uses templates of page A-D
+				Merge i) "/plan/edit"
+					Uses templates of page A-D
+				Merge j) "/users/edit"
+					Uses templates of page A-D
+				Merge k) "/tenants/1/projects/1/users"
+					Webflow version
+						Uses templates of page E
+				Merge L) "/tenants/1/projects/1/edit"
+					Webflow version
+						Uses Template of page E and also calendar Widget
+				Make support path
+					Connect navbar with support page
+			Outline steps in the readme file (not private)
+			Outline steps  keep all outlined steps inside readme file
+	Push well developed application to heroku 
+		This means fixing depreciated messages
+
+
+
+Phase 3.1: Follow private message on adding keys including all written security measures
+
+Phase 4: DP from heroku to GAE
+
+
 This README would normally document whatever steps are necessary to get the
 application up and running.
+
+
 
 Things you may want to cover:
 
@@ -26,3 +174,42 @@ Things you may want to cover:
 
 Please feel free to use a different markup language if you do not plan to run
 <tt>rake doc:app</tt>.
+
+
+rails s -b $IP -p $PORT
+
+
+
+
+${ sudo service postgresql start } Restarts postgres crashed server (make sure to migrate db afterwards
+
+
+
+
+
+
+
+
+Last issues arrising 
+A) Has issues showing successful redirect out of sign up page
+ 1. Check testing new user adding with removing application.js and adding on application.html.erb
+ 2. if doesn't work try checking form on registrations/new.html.erb
+ 3. else, try looking into controller files and see if redirect issue is there
+ 4. else, check stripe javascript file to see if this plays a role in showing proper pages 
+ 
+ 
+ 
+LAST ISSUE WORKED ON 
+1. deleting project gives issue on db for destroying
+2. connect/support 
+fixing email form (inside sublime text)
+merge template with html
+
+
+https://stackoverflow.com/questions/28996773/error-delete-on-table-violates-foreign-key-constraint-key-id-is-still-referenc?utm_medium=organic&utm_source=google_rich_qa&utm_campaign=google_rich_qa
+is closest help found
+
+Cloud9 Help
+You may be using the wrong PORT & IP for your server application.For rails, use: 'rails s -p $PORT -b $IP'
+For Sinatra, use:
+ruby app.rb -p $PORT -o $IP'.
