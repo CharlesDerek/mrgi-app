@@ -58,7 +58,7 @@ bundle install
 rake db:drop db:create db:migrate
 
 
-Phase 2: Push project
+Phase 2: Push project (MAKE SURE TO USE SSH WITH GIT SO PASSWORD IS ONLY ONCE)
 Git Init
     a) Set up git link to new account
         $ git init
