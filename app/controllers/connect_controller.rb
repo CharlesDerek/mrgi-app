@@ -10,6 +10,8 @@ class ConnectController < ApplicationController
   def index
   end
   def messaging 
-    
+  end
+  
+  def mrgi_mutual_contract_agreement_102
   end
 end

@@ -6,6 +6,8 @@ Rails.application.routes.draw do
   
   get 'connect/messaging'
   
+  get 'connect/mrgi_mutual_contract_agreement_102'
+  
   resources :connect do
     
   end

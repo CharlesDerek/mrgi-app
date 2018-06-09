@@ -196,10 +196,11 @@ Please feel free to use a different markup language if you do not plan to run
 
 rails s -b $IP -p $PORT
 
+${ 
 
+sudo service postgresql start
 
-
-${ sudo service postgresql start } Restarts postgres crashed server (make sure to migrate db afterwards
+} Restarts postgres crashed server (make sure to migrate db afterwards
 
 
 
