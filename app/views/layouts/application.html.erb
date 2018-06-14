@@ -17,9 +17,7 @@ function redirectHttpToHttps()
     var httpsURL= "https://" + httpURL;
     window.location = httpsURL;
 }
-
-
-if (window.origin == "http://www.mrginnovations.com") {
+if (window.location.protocol == "http:") {
     redirectHttpToHttps();
 } else null
 </script>
