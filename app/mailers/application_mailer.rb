@@ -1,4 +1,4 @@
 class ApplicationMailer < ActionMailer::Base
-  default from: 'do-not-reply@mrginnovations.com'
+  default from: 'notifications@mrginnovations.com'
   layout 'mailer'
 end

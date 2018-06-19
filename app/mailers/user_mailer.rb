@@ -1,26 +1,18 @@
 class UserMailer < ApplicationMailer
-
-  # Subject can be set in your I18n file at config/locales/en.yml
-  # with the following lookup:
-  #
-  #   en.user_mailer.support.subject
-  #
-  def support
-    @greeting = "Hi how are you? "
-
-    mail to: "mrginnovations@gmail.com", 
-    subject: "New Email From Support Team at MRGI USA" 
-  end
-
-  # Subject can be set in your I18n file at config/locales/en.yml
-  # with the following lookup:
-  #
-  #   en.user_mailer.charlesderek.subject
-  #
-  def charlesderek
-    @greeting = "Hey! How are you?"
-
-    mail to: "mrginnovations@gmail.com", 
-    subject: "New Email From: Charles Derek at MRGI USA" 
+  def receive(email)
+    page = Page.find_by(address: email.to.first)
+    page.emails.create(
+      subject: email.subject,
+      body: email.body
+    )
+ 
+    if email.has_attachments?
+      email.attachments.each do |attachment|
+        page.attachments.create({
+          file: attachment,
+          description: email.subject
+        })
+      end
+    end
   end
 end

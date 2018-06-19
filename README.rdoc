@@ -204,25 +204,10 @@ sudo service postgresql start
 
 
 
+CHEATSHEET FOR PSQL COMMANDS
 
+http://www.postgresqltutorial.com/postgresql-cheat-sheet/
 
-
-
-
-Last issues arrising 
-A) Has issues showing successful redirect out of sign up page
- 1. Check testing new user adding with removing application.js and adding on application.html.erb
- 2. if doesn't work try checking form on registrations/new.html.erb
- 3. else, try looking into controller files and see if redirect issue is there
- 4. else, check stripe javascript file to see if this plays a role in showing proper pages 
- 
- 
- 
-LAST ISSUE WORKED ON 
-1. deleting project gives issue on db for destroying
-2. connect/support 
-fixing email form (inside sublime text)
-merge template with html
 
 
 https://stackoverflow.com/questions/28996773/error-delete-on-table-violates-foreign-key-constraint-key-id-is-still-referenc?utm_medium=organic&utm_source=google_rich_qa&utm_campaign=google_rich_qa
@@ -254,3 +239,37 @@ testing git push
     </rewrite>
   </system.webServer>
 </configuration>
+
+
+
+
+Last fix was adding a email sender from actionmailerMake sure to not deploy application until fixing issue on postgresql
+
+
+$ bin/rails generate scaffold user name email login
+$ bin/rails db:migrate
+
+
+
+DEPRECATION WARNING: You are using the a deprecated processor interface #<Proc:0x0000000400ce00@/usr/local/rvm/gems/ruby-2.3.4/gems/autoprefixer-rails-6.3.7/lib/autoprefixer-rails/sprockets.rb:37>.
+Please update your processor interface:
+https://github.com/rails/sprockets/blob/master/guides/extending_sprockets.md#supporting-all-versions-of-sprockets-in-processors
+ (called from install at /usr/local/rvm/gems/ruby-2.3.4/gems/autoprefixer-rails-6.3.7/lib/autoprefixer-rails/sprockets.rb:37)
+   (1.9ms)  SELECT pg_try_advisory_lock(8770677182619656430);
+  ActiveRecord::SchemaMigration Load (0.8ms)  SELECT "schema_migrations".* FROM "schema_migrations"
+Migrating to CreateUsers (20180614232948)
+   (0.2ms)  BEGIN
+== 20180614232948 CreateUsers: migrating ======================================
+-- create_table(:users)
+   (70.1ms)  CREATE TABLE "users" ("id" serial primary key, "name" character varying, "email" character varying, "login" character varying, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)
+   (0.2ms)  ROLLBACK
+   (0.4ms)  SELECT pg_advisory_unlock(8770677182619656430)
+rails aborted!
+StandardError: An error has occurred, this and all later migrations canceled:
+
+PG::DuplicateTable: ERROR:  relation "users" already exists
+: CREATE TABLE "users" ("id" serial primary key, "name" character varying
+
+
+from portion http://guides.rubyonrails.org/action_mailer_basics.html
+
