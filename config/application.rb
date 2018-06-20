@@ -27,3 +27,8 @@ module BlogApp
   end
 end
 
+config.assets.enabled = false
+
+config.generators do |g|
+  g.assets false
+end
