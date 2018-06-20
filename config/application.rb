@@ -26,9 +26,3 @@ module BlogApp
     # -- all .rb files in that directory are automatically loaded.
   end
 end
-
-config.assets.enabled = false
-
-config.generators do |g|
-  g.assets false
-end
