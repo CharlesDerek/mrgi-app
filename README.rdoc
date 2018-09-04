@@ -1,6 +1,14 @@
 == README
+rails s -b $IP -p $PORT
 
-current == L 68 -->
+${ 
+
+sudo service postgresql start
+
+} Restarts postgres crashed server (make sure to migrate db afterwards
+
+
+current == L68 -->
 
 Phase 1: Merge Saas Project with Rsoftware Template
 need to first create an rails app with { rails new newappname }
@@ -193,14 +201,6 @@ Things you may want to cover:
 Please feel free to use a different markup language if you do not plan to run
 <tt>rake doc:app</tt>.
 
-
-rails s -b $IP -p $PORT
-
-${ 
-
-sudo service postgresql start
-
-} Restarts postgres crashed server (make sure to migrate db afterwards
 
 
 
